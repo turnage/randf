@@ -1,0 +1,8 @@
+[package]
+name = "randf"
+version = "0.1.0"
+authors = ["Payton Turnage <paytonturnage@gmail.com>"]
+
+[dependencies.clap]
+version = "2"
+features = ["yaml"]

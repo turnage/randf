@@ -1,0 +1,16 @@
+name: randf
+version: "0.1.0"
+about: Formats and prints random data.
+author: Payton Turnage <paytonturnage@gmail.com>
+
+args:
+    - format:
+        value_name: FORMAT
+        help: Format specifier for random values.
+        index: 1
+        required: true
+    - iterations:
+        value_name: ITERATIONS
+        help: Number of iterations of the format to generate.
+        short: n
+        default_value: "1"
