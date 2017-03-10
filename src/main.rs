@@ -7,6 +7,7 @@ pub mod id;
 pub mod parse;
 pub mod range;
 pub mod repr;
+pub mod spec;
 
 fn main() {
     let yaml = load_yaml!("cli.yaml");
