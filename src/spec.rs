@@ -12,6 +12,7 @@ static DEFAULT_REPR: &'static str = "d";
 static DEFAULT_RANGE: &'static str = "0-256";
 
 /// Spec defines the range and representation of a random entity.
+#[derive(PartialEq, Debug)]
 pub struct Spec {
     id: ID,
     range: Range,
@@ -34,5 +35,38 @@ impl FromStr for Spec {
                 repr: repr,
             })
         }
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use id::ID;
+    use range::Range;
+    use repr::Repr;
+    use parse::error;
+
+    use super::*;
+
+    #[test]
+    fn test_parse() {
+        assert_eq!("b:0-255:x".parse::<Spec>(),
+                   Ok(Spec {
+                       id: ID { index: 1 },
+                       range: Range {
+                           start: 0.0,
+                           end: 255.0,
+                       },
+                       repr: Repr::Hex,
+                   }));
+        assert_eq!("z:0-1".parse::<Spec>(),
+                   Ok(Spec {
+                       id: ID { index: 25 },
+                       range: Range {
+                           start: 0.0,
+                           end: 1.0,
+                       },
+                       repr: Repr::Dec,
+                   }));
+        assert_eq!("z:0-1:x:9".parse::<Spec>(), error("z:0-1:x:9", NAME));
     }
 }
