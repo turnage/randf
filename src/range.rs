@@ -2,6 +2,10 @@
 
 use std::str::FromStr;
 
+use parse;
+
+static NAME: &'static str = "range";
+
 /// Range is inclusive at start and exclusive at end.
 #[derive(PartialEq, Debug)]
 pub struct Range {
@@ -9,14 +13,10 @@ pub struct Range {
     pub end: f64,
 }
 
-fn invalid_range_error(s: &str) -> Result<Range, String> {
-    Err(format!("\"{}\" is not a valid range.", s))
-}
-
 impl FromStr for Range {
     type Err = String;
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        let error = invalid_range_error(s);
+        let error = parse::error(s, NAME);
         match s.split_terminator('-').collect::<Vec<&str>>().as_slice() {
             &[ref s, ref e] => {
                 match (s.parse::<f64>(), e.parse::<f64>()) {
@@ -31,7 +31,8 @@ impl FromStr for Range {
 
 #[cfg(test)]
 mod test {
-    use super::{Range, invalid_range_error};
+    use super::{Range, NAME};
+    use parse::error;
 
     #[test]
     fn test_parse() {
@@ -45,8 +46,8 @@ mod test {
                        start: 5.5,
                        end: 5.7,
                    }));
-        assert_eq!("ii".parse::<Range>(), invalid_range_error("ii"));
-        assert_eq!("6.7-ii".parse::<Range>(), invalid_range_error("6.7-ii"));
-        assert_eq!("-0.0".parse::<Range>(), invalid_range_error("-0.0"));
+        assert_eq!("ii".parse::<Range>(), error("ii", NAME));
+        assert_eq!("6.7-ii".parse::<Range>(), error("6.7-ii", NAME));
+        assert_eq!("-0.0".parse::<Range>(), error("-0.0", NAME));
     }
 }

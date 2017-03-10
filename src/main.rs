@@ -3,7 +3,9 @@
 #[macro_use]
 extern crate clap;
 
+pub mod parse;
 pub mod range;
+pub mod repr;
 
 fn main() {
     let yaml = load_yaml!("cli.yaml");
