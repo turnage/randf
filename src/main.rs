@@ -1,5 +1,9 @@
+#![feature(slice_patterns)]
+
 #[macro_use]
 extern crate clap;
+
+pub mod range;
 
 fn main() {
     let yaml = load_yaml!("cli.yaml");
