@@ -3,6 +3,10 @@ name = "randf"
 version = "0.1.0"
 authors = ["Payton Turnage <paytonturnage@gmail.com>"]
 
+[dependencies]
+regex = "0.2"
+meval = "0.0.9"
+
 [dependencies.clap]
 version = "2"
 features = ["yaml"]
