@@ -1,8 +1,9 @@
-#![feature(slice_patterns)]
+#![feature(slice_patterns, exclusive_range_pattern)]
 
 #[macro_use]
 extern crate clap;
 
+pub mod id;
 pub mod parse;
 pub mod range;
 pub mod repr;
