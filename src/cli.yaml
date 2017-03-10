@@ -12,5 +12,30 @@ args:
     - iterations:
         value_name: ITERATIONS
         help: Number of iterations of the format to generate.
-        short: n
+        long: iterations
+        short: i
         default_value: "1"
+    - constraints:
+        value_name: CONSTRAINTS
+        help: Constraints on generated random values.
+        long: constraints
+        short: c
+        default_value: ""
+    - spec:
+        value_name: SPEC
+        help: "Spec for random values: id(s){:repr{:range}}"
+        long: spec
+        short: s
+        default_value: "*:d:0-255"
+    - begin:
+        value_name: BEGIN
+        help: String to prepend to the generated output.
+        long: begin
+        short: b
+        default_value: ""
+    - end:
+        value_name: END
+        help: String to append to the generated output.
+        long: end
+        short: e
+        default_value: ""
