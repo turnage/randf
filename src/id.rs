@@ -12,7 +12,7 @@ const A_OFFSET: u8 = 97;
 /// ID is an identifier for a random entity.
 #[derive(PartialEq, Debug)]
 pub struct ID {
-    pub index: u8
+    pub index: u8,
 }
 
 impl FromStr for ID {
@@ -21,8 +21,8 @@ impl FromStr for ID {
         let error = parse::error(s, NAME);
         if s.len() == 1 {
             match s.chars().next().unwrap_or('.') {
-                i @ 'a'..'{' => Ok(ID{index: (i as u8) - A_OFFSET}),
-                _ => error
+                i @ 'a'...'z' => Ok(ID { index: (i as u8) - A_OFFSET }),
+                _ => error,
             }
         } else {
             error
