@@ -6,6 +6,7 @@ extern crate clap;
 pub mod id;
 pub mod parse;
 pub mod range;
+pub mod relop;
 pub mod repr;
 pub mod spec;
 
