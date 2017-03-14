@@ -1,11 +1,15 @@
 //! Specifications for generated random entities.
 
+use std::iter::Iterator;
 use std::str::FromStr;
+
+use rand::{Rng, thread_rng};
 
 use id::ID;
 use range::Range;
 use repr::Repr;
 use parse;
+use value::Value;
 
 static NAME: &'static str = "specification";
 static DEFAULT_REPR: &'static str = "d";
@@ -35,6 +39,14 @@ impl FromStr for Spec {
                 repr: repr,
             })
         }
+    }
+}
+
+impl Iterator for Spec {
+    type Item = Value;
+    fn next(&mut self) -> Option<Self::Item> {
+        Some(Value::from(thread_rng().gen_range::<f64>(self.range.start, self.range.end),
+                         self.repr))
     }
 }
 

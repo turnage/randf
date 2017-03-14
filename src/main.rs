@@ -3,6 +3,7 @@
 #[macro_use]
 extern crate clap;
 extern crate meval;
+extern crate rand;
 extern crate regex;
 
 pub mod constraints;
@@ -12,6 +13,7 @@ pub mod range;
 pub mod relop;
 pub mod repr;
 pub mod spec;
+pub mod value;
 
 fn main() {
     let yaml = load_yaml!("cli.yaml");

@@ -7,7 +7,7 @@ use parse;
 static NAME: &'static str = "representation";
 
 /// Repr can be any of the supported representations of random bits.
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug, Copy, Clone)]
 pub enum Repr {
     Hex,
     Dec,
